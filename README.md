@@ -1,75 +1,63 @@
-# React + TypeScript + Vite
+# React + TypeScript Starter Guide
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A hands-on guide to using TypeScript in a React project — from setup to typing components, props, hooks, and events. Built with Vite.
 
-Currently, two official plugins are available:
+## Why this repo?
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+React works with plain JavaScript out of the box, but TypeScript catches bugs early, improves autocomplete, and makes refactors safer. This repo walks through the patterns you'll actually use, with working examples — including a small chai-ordering app to demonstrate typed props, state, and events in practice.
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+git clone <your-repo-url>
+cd <repo-name>
+npm install
+npm run dev
 
-## Expanding the ESLint configuration
+## What's covered
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Setting up TypeScript in a React + Vite project
+- Typing component props (`interface` vs `type`)
+- Typing state (`useState<T>`)
+- Typing event handlers (`React.ChangeEvent`, `React.FormEvent`, etc.)
+- Typing custom hooks
+- Shared types in a central `types.ts` file
+- Common mistakes and how to avoid them
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Components
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **Card.tsx** — generic reusable card wrapper
+- **ChaiCard.tsx** — displays a single chai item
+- **ChaiList.tsx** — renders a list of `ChaiCard` components
+- **Counter.tsx** — simple typed counter using `useState<number>`
+- **OrderForm.tsx** — typed form for placing a chai order, demonstrates event typing and controlled inputs
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Project Structure
 
-```
+src/
+├── components/
+│ ├── Card.tsx
+│ ├── ChaiCard.tsx
+│ ├── ChaiList.tsx
+│ ├── Counter.tsx
+│ └── OrderForm.tsx
+├── hooks/
+├── App.tsx
+├── main.tsx
+├── types.ts
+├── App.css
+└── index.css
+index.html
+vite.config.ts
+tsconfig.json
+package.json
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+## Scripts
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+npm run dev # start dev server
+npm run build # production build
+npm run preview # preview production build
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Requirements
 
-```
+- Node.js 18+
+- npm
